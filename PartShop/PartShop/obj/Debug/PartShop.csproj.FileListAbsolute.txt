@@ -1,0 +1,16 @@
+C:\Users\Andrius\Desktop\C#\Race\PartShop\PartShop\bin\Debug\PartShop.exe.config
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\PartShop.exe.config
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\Database.mdf
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\Database_log.ldf
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\PartShop.exe
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\PartShop.pdb
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\EntityFramework.dll
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\EntityFramework.xml
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\obj\Debug\PartShop.csprojResolveAssemblyReference.cache
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\obj\Debug\PartShop.LoginRegister.resources
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\obj\Debug\PartShop.Properties.Resources.resources
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\obj\Debug\PartShop.csproj.GenerateResource.Cache
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\obj\Debug\PartShop.exe
+C:\Users\Andrius\Desktop\C#\PartShop\PartShop\obj\Debug\PartShop.pdb

@@ -16,7 +16,7 @@ namespace PartShop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginRegister());
+            Application.Run(new RegisterLogin());
         }
     }
 }

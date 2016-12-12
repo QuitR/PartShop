@@ -26,6 +26,7 @@
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsAdmin" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="CategorySet">
     <Key>
@@ -97,6 +98,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" DefaultValue="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Item" Relationship="Model1.UserItem" FromRole="User" ToRole="Item" />
+          <Property Name="Email" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -158,6 +160,7 @@
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

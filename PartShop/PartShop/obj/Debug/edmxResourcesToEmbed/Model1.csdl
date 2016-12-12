@@ -22,6 +22,7 @@
     <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="IsAdmin" Type="Boolean" Nullable="false" DefaultValue="false" annotation:StoreGeneratedPattern="None" />
     <NavigationProperty Name="Item" Relationship="Model1.UserItem" FromRole="User" ToRole="Item" />
+    <Property Name="Email" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>

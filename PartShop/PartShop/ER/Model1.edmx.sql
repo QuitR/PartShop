@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/12/2016 16:27:49
+-- Date Created: 12/12/2016 20:42:07
 -- Generated from EDMX file: C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\Model1.edmx
 -- --------------------------------------------------
 
@@ -67,8 +67,8 @@ CREATE TABLE [dbo].[ItemSet] (
     [Model] nvarchar(max)  NOT NULL,
     [ReleaseDate] datetime  NULL,
     [CountInStorage] int  NULL,
-    [UserId] int  NOT NULL,
-    [CategoryId] int  NOT NULL
+    [CategoryId] int  NOT NULL,
+    [UserId] int  NULL
 );
 GO
 
@@ -98,21 +98,6 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [UserId] in table 'ItemSet'
-ALTER TABLE [dbo].[ItemSet]
-ADD CONSTRAINT [FK_UserItem]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[UserSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserItem'
-CREATE INDEX [IX_FK_UserItem]
-ON [dbo].[ItemSet]
-    ([UserId]);
-GO
-
 -- Creating foreign key on [CategoryId] in table 'ItemSet'
 ALTER TABLE [dbo].[ItemSet]
 ADD CONSTRAINT [FK_ItemCategory]
@@ -126,6 +111,21 @@ GO
 CREATE INDEX [IX_FK_ItemCategory]
 ON [dbo].[ItemSet]
     ([CategoryId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'ItemSet'
+ALTER TABLE [dbo].[ItemSet]
+ADD CONSTRAINT [FK_UserItem]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[UserSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserItem'
+CREATE INDEX [IX_FK_UserItem]
+ON [dbo].[ItemSet]
+    ([UserId]);
 GO
 
 -- --------------------------------------------------

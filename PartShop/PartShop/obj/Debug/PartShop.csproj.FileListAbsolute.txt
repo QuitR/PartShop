@@ -30,3 +30,11 @@ C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartS
 C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Properties.Resources.resources
 C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.csproj.GenerateResource.Cache
 C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.RegisterLogin.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.LoginForm.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.AdminInterface.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.ItemList.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.AddItem.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.EditItem.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.DeleteItem.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.Categories.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.Users.resources

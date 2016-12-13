@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PartShop
+namespace PartShop.ER
 {
     using System;
     using System.Data.Entity;

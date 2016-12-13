@@ -9,13 +9,13 @@
     <EntitySet Name="UserSet" EntityType="Model1.Store.UserSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CategorySet" EntityType="Model1.Store.CategorySet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItemSet" EntityType="Model1.Store.ItemSet" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="UserItem" Association="Model1.Store.UserItem">
-      <End Role="User" EntitySet="UserSet" />
-      <End Role="Item" EntitySet="ItemSet" />
-    </AssociationSet>
     <AssociationSet Name="ItemCategory" Association="Model1.Store.ItemCategory">
       <End Role="Item" EntitySet="ItemSet" />
       <End Role="Category" EntitySet="CategorySet" />
+    </AssociationSet>
+    <AssociationSet Name="UserItem" Association="Model1.Store.UserItem">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Item" EntitySet="ItemSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="UserSet">
@@ -45,21 +45,9 @@
     <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ReleaseDate" Type="datetime" Nullable="true" />
     <Property Name="CountInStorage" Type="int" Nullable="true" DefaultValue="5" />
-    <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="true" />
   </EntityType>
-  <Association Name="UserItem">
-    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
-    <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Item">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ItemCategory">
     <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="*" />
     <End Role="Category" Type="Model1.Store.CategorySet" Multiplicity="1" />
@@ -72,6 +60,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="UserItem">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="0..1" />
+    <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -80,13 +80,13 @@
           <EntitySet Name="UserSet" EntityType="Model1.User" />
           <EntitySet Name="CategorySet" EntityType="Model1.Category" />
           <EntitySet Name="ItemSet" EntityType="Model1.Item" />
-          <AssociationSet Name="UserItem" Association="Model1.UserItem">
-            <End Role="User" EntitySet="UserSet" />
-            <End Role="Item" EntitySet="ItemSet" />
-          </AssociationSet>
           <AssociationSet Name="ItemCategory" Association="Model1.ItemCategory">
             <End Role="Item" EntitySet="ItemSet" />
             <End Role="Category" EntitySet="CategorySet" />
+          </AssociationSet>
+          <AssociationSet Name="UserItem" Association="Model1.UserItem">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Item" EntitySet="ItemSet" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="User">
@@ -97,8 +97,8 @@
           <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" DefaultValue="false" annotation:StoreGeneratedPattern="None" />
-          <NavigationProperty Name="Item" Relationship="Model1.UserItem" FromRole="User" ToRole="Item" />
           <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Model1.UserItem" FromRole="User" ToRole="Item" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -118,23 +118,11 @@
           <Property Name="Model" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="true" Precision="3" />
           <Property Name="CountInStorage" Type="Int32" Nullable="true" annotation:StoreGeneratedPattern="None" DefaultValue="5" />
-          <NavigationProperty Name="User" Relationship="Model1.UserItem" FromRole="Item" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Model1.ItemCategory" FromRole="Item" ToRole="Category" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserItem" FromRole="Item" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="true" />
         </EntityType>
-        <Association Name="UserItem">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
-          <End Type="Model1.Item" Role="Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ItemCategory">
           <End Type="Model1.Item" Role="Item" Multiplicity="*" />
           <End Type="Model1.Category" Role="Category" Multiplicity="1" />
@@ -144,6 +132,18 @@
             </Principal>
             <Dependent Role="Item">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserItem">
+          <End Type="Model1.User" Role="User" Multiplicity="0..1" />
+          <End Type="Model1.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -181,8 +181,8 @@
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
           <ScalarProperty Name="CountInStorage" ColumnName="CountInStorage" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

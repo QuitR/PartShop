@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PartShop
+namespace PartShop.ER
 {
     using System;
     using System.Collections.Generic;
@@ -26,10 +26,10 @@ namespace PartShop
         public string Model { get; set; }
         public Nullable<System.DateTime> ReleaseDate { get; set; }
         public Nullable<int> CountInStorage { get; set; }
-        public int UserId { get; set; }
         public int CategoryId { get; set; }
+        public Nullable<int> UserId { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Category Category { get; set; }
+        public virtual User User { get; set; }
     }
 }

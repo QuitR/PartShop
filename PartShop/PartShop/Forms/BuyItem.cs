@@ -70,6 +70,13 @@ namespace PartShop.Forms
                         StockUpdate.Parameters.Add("@UserId", SqlDbType.Int).Value = UserId;
                         StockUpdate.Parameters.Add("@article", SqlDbType.Int).Value = article.Article;
                         StockUpdate.ExecuteNonQuery();
+                        SqlCommand Insert = new SqlCommand("INSERT INTO dbo.BoughtStuffSet (Users, Price, Make, Model, ReleaseDate) VALUES (@user, @price, @make, @model, @date)", connection);
+                        Insert.Parameters.Add("@user", SqlDbType.Int).Value = UserId;
+                        Insert.Parameters.Add("@price", SqlDbType.Float).Value = Math.Round(float.Parse($"{dr["Price"]}"), 2);
+                        Insert.Parameters.Add("@make", SqlDbType.NVarChar).Value = ($"{dr["Make"]}");
+                        Insert.Parameters.Add("@model", SqlDbType.NVarChar).Value = ($"{dr["Model"]}");
+                        Insert.Parameters.Add("@date", SqlDbType.DateTime).Value = DateTime.Parse($"{dr["ReleaseDate"]}");
+                        Insert.ExecuteNonQuery();
                         Visible = false;
                     }
                 }
@@ -110,16 +117,23 @@ namespace PartShop.Forms
                         StockUpdate.Parameters.Add("@UserId", SqlDbType.Int).Value = UserId;
                         StockUpdate.Parameters.Add("@article", SqlDbType.Int).Value = article.Article;
                         StockUpdate.ExecuteNonQuery();
+                        SqlCommand Insert = new SqlCommand("INSERT INTO dbo.BoughtStuffSet (Users, Price, Make, Model, ReleaseDate) VALUES (@user, @price, @make, @model, @date)", connection);
+                        Insert.Parameters.Add("@user", SqlDbType.Int).Value = UserId;
+                        Insert.Parameters.Add("@price", SqlDbType.Float).Value = Math.Round(float.Parse($"{dr["Price"]}"), 2);
+                        Insert.Parameters.Add("@make", SqlDbType.NVarChar).Value = ($"{dr["Make"]}");
+                        Insert.Parameters.Add("@model", SqlDbType.NVarChar).Value = ($"{dr["Model"]}");
+                        Insert.Parameters.Add("@date", SqlDbType.DateTime).Value = DateTime.Parse($"{dr["ReleaseDate"]}");
+                        Insert.ExecuteNonQuery();
                         Visible = false;
                     }
-                }
-                if (!exists)
-                {
-                    Purchase.BackColor = Color.IndianRed;
-                    Purchase.Text = "Not found.";
+                    if (!exists)
+                    {
+                        Purchase.BackColor = Color.IndianRed;
+                        Purchase.Text = "Not found.";
+                    }
                 }
             }
-            productSetTableAdapter.Fill(databaseDataSet.ProductSet);
+            /*productSetTableAdapter.Fill(databaseDataSet.ProductSet);
             itemSetTableAdapter.Fill(databaseDataSet.ItemSet);
             foreach (var table in databaseDataSet.ProductSet)
             {
@@ -139,7 +153,7 @@ namespace PartShop.Forms
                         insert.ExecuteNonQuery();
                     }
                 }
-            }
+            }*/
         }
 
         private void BuyItem_VisibleChanged(object sender, EventArgs e)

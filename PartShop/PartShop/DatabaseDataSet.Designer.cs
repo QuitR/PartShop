@@ -2842,8 +2842,8 @@ SELECT Id, Price, Make, Model, CountInStorage, ReleaseDate, CategoryId FROM Item
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT Id, Price, Make, Model, CountInStorage, ReleaseDate, CategoryId FROM ItemS" +
-                "et WHERE (CategoryId = @Category) AND (CountInStorage > 0)";
+            this._commandCollection[3].CommandText = "SELECT Id, Price, Make, Model, CountInStorage, ReleaseDate, CategoryId\r\nFROM Item" +
+                "Set \r\nWHERE (CategoryId = @Category AND CountInStorage > 0)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Category", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();

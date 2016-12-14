@@ -38,3 +38,8 @@ C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartS
 C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.DeleteItem.resources
 C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.Categories.resources
 C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.Users.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.ChooseCategory.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.UserInterface.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.BuyItem.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.ShoppingCart.resources
+C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\obj\Debug\PartShop.Forms.MostPopular.resources

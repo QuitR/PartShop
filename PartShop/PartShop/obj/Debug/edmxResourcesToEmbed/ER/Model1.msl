@@ -30,7 +30,27 @@
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
           <ScalarProperty Name="CountInStorage" ColumnName="CountInStorage" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Product)">
+        <MappingFragment StoreEntitySet="ProductSet">
+          <ScalarProperty Name="Article" ColumnName="Article" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoughtStuffSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.BoughtStuff)">
+        <MappingFragment StoreEntitySet="BoughtStuffSet">
+          <ScalarProperty Name="Nr" ColumnName="Nr" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+          <ScalarProperty Name="User" ColumnName="User" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

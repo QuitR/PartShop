@@ -18,7 +18,7 @@ namespace PartShop.ER
         public User()
         {
             this.IsAdmin = false;
-            this.Item = new HashSet<Item>();
+            this.Product = new HashSet<Product>();
         }
     
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace PartShop.ER
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Item> Item { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

@@ -4,13 +4,19 @@
     <EntitySet Name="UserSet" EntityType="Model1.Store.UserSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CategorySet" EntityType="Model1.Store.CategorySet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ItemSet" EntityType="Model1.Store.ItemSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductSet" EntityType="Model1.Store.ProductSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BoughtStuffSet" EntityType="Model1.Store.BoughtStuffSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="ItemCategory" Association="Model1.Store.ItemCategory">
       <End Role="Item" EntitySet="ItemSet" />
       <End Role="Category" EntitySet="CategorySet" />
     </AssociationSet>
-    <AssociationSet Name="UserItem" Association="Model1.Store.UserItem">
-      <End Role="User" EntitySet="UserSet" />
+    <AssociationSet Name="ProductItem" Association="Model1.Store.ProductItem">
+      <End Role="Product" EntitySet="ProductSet" />
       <End Role="Item" EntitySet="ItemSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserProduct" Association="Model1.Store.UserProduct">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Product" EntitySet="ProductSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="UserSet">
@@ -41,7 +47,25 @@
     <Property Name="ReleaseDate" Type="datetime" Nullable="true" />
     <Property Name="CountInStorage" Type="int" Nullable="true" DefaultValue="5" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductSet">
+    <Key>
+      <PropertyRef Name="Article" />
+    </Key>
+    <Property Name="Article" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="BoughtStuffSet">
+    <Key>
+      <PropertyRef Name="Nr" />
+    </Key>
+    <Property Name="Nr" Type="int" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Make" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
+    <Property Name="User" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="ItemCategory">
     <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="*" />
@@ -55,14 +79,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UserItem">
+  <Association Name="ProductItem">
+    <End Role="Product" Type="Model1.Store.ProductSet" Multiplicity="*" />
+    <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserProduct">
     <End Role="User" Type="Model1.Store.UserSet" Multiplicity="0..1" />
-    <End Role="Item" Type="Model1.Store.ItemSet" Multiplicity="*" />
+    <End Role="Product" Type="Model1.Store.ProductSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Item">
+      <Dependent Role="Product">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>

@@ -8,10 +8,16 @@
       <End Role="Item" EntitySet="ItemSet" />
       <End Role="Category" EntitySet="CategorySet" />
     </AssociationSet>
-    <AssociationSet Name="UserItem" Association="Model1.UserItem">
-      <End Role="User" EntitySet="UserSet" />
+    <EntitySet Name="ProductSet" EntityType="Model1.Product" />
+    <AssociationSet Name="ProductItem" Association="Model1.ProductItem">
+      <End Role="Product" EntitySet="ProductSet" />
       <End Role="Item" EntitySet="ItemSet" />
     </AssociationSet>
+    <AssociationSet Name="UserProduct" Association="Model1.UserProduct">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Product" EntitySet="ProductSet" />
+    </AssociationSet>
+    <EntitySet Name="BoughtStuffSet" EntityType="Model1.BoughtStuff" />
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -22,7 +28,7 @@
     <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="IsAdmin" Type="Boolean" Nullable="false" DefaultValue="false" annotation:StoreGeneratedPattern="None" />
     <Property Name="Email" Type="String" Nullable="false" />
-    <NavigationProperty Name="Item" Relationship="Model1.UserItem" FromRole="User" ToRole="Item" />
+    <NavigationProperty Name="Product" Relationship="Model1.UserProduct" FromRole="User" ToRole="Product" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -44,8 +50,7 @@
     <Property Name="CountInStorage" Type="Int32" Nullable="true" annotation:StoreGeneratedPattern="None" DefaultValue="5" />
     <NavigationProperty Name="Category" Relationship="Model1.ItemCategory" FromRole="Item" ToRole="Category" />
     <Property Name="CategoryId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="User" Relationship="Model1.UserItem" FromRole="Item" ToRole="User" />
-    <Property Name="UserId" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="Product" Relationship="Model1.ProductItem" FromRole="Item" ToRole="Product" />
   </EntityType>
   <Association Name="ItemCategory">
     <End Type="Model1.Item" Role="Item" Multiplicity="*" />
@@ -59,16 +64,49 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UserItem">
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Article" />
+    </Key>
+    <Property Name="Article" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <NavigationProperty Name="Item" Relationship="Model1.ProductItem" FromRole="Product" ToRole="Item" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Model1.UserProduct" FromRole="Product" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="true" />
+  </EntityType>
+  <Association Name="ProductItem">
+    <End Type="Model1.Product" Role="Product" Multiplicity="*" />
+    <End Type="Model1.Item" Role="Item" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserProduct">
     <End Type="Model1.User" Role="User" Multiplicity="0..1" />
-    <End Type="Model1.Item" Role="Item" Multiplicity="*" />
+    <End Type="Model1.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Item">
+      <Dependent Role="Product">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="BoughtStuff">
+    <Key>
+      <PropertyRef Name="Nr" />
+    </Key>
+    <Property Name="Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="Make" Type="String" Nullable="false" />
+    <Property Name="Model" Type="String" Nullable="false" />
+    <Property Name="ReleaseDate" Type="DateTime" Nullable="false" />
+    <Property Name="User" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

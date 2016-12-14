@@ -18,6 +18,7 @@ namespace PartShop.ER
         public Item()
         {
             this.CountInStorage = 5;
+            this.Product = new HashSet<Product>();
         }
     
         public int Id { get; set; }
@@ -27,9 +28,9 @@ namespace PartShop.ER
         public Nullable<System.DateTime> ReleaseDate { get; set; }
         public Nullable<int> CountInStorage { get; set; }
         public int CategoryId { get; set; }
-        public Nullable<int> UserId { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

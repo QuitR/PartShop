@@ -52,6 +52,7 @@ namespace PartShop
                 //Prideti i laikina DB, kad matytusi atnaujinus
                 using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\bin\Debug\Database.mdf;Integrated Security=True"))
                 {
+                    int id;
                     connection.Open();
                     SqlCommand command = new SqlCommand("INSERT INTO dbo.ItemSet (Price, Make, Model, ReleaseDate, CountInStorage, CategoryId) VALUES (@price, @make, @model, @releaseDate, @countInStorage, @categoryId)", connection);
                     command.Parameters.Add("@price", SqlDbType.Float).Value = Math.Round((decimal)price, 2);
@@ -61,10 +62,27 @@ namespace PartShop
                     command.Parameters.Add("@countInStorage", SqlDbType.Int).Value = count;
                     command.Parameters.Add("@categoryId", SqlDbType.Int).Value = category;
                     command.ExecuteNonQuery();
+                    SqlCommand GetId = new SqlCommand("SELECT * FROM dbo.ItemSet WHERE (Price = @price AND Make = @make AND Model = @model AND ReleaseDate = @date AND CountInStorage = @countInStorage AND CategoryId = @categoryId)", connection);
+                    GetId.Parameters.Add("@price", SqlDbType.Float).Value = Math.Round((decimal)price, 2);
+                    GetId.Parameters.Add("@make", SqlDbType.NVarChar).Value = Make.Text;
+                    GetId.Parameters.Add("@model", SqlDbType.NVarChar).Value = Model.Text;
+                    GetId.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
+                    GetId.Parameters.Add("@countInStorage", SqlDbType.Int).Value = count;
+                    GetId.Parameters.Add("@categoryId", SqlDbType.Int).Value = category;
+                    id = (int)GetId.ExecuteScalar();
+                    for (int i = 0; i < count; i++)
+                    {
+                        Random rng = new Random();
+                        SqlCommand UpdateStock = new SqlCommand("INSERT INTO dbo.ProductSet(Article, ItemId) VALUES(@article, @itemId)", connection);
+                        UpdateStock.Parameters.Add("@article", SqlDbType.Int).Value = rng.Next(1, 999999) + i;
+                        UpdateStock.Parameters.Add("@itemId", SqlDbType.Int).Value = id;
+                        UpdateStock.ExecuteNonQuery();
+                    }
                 }
                 //Prideti i nuolatine DB, kad isliktu pakeitimai
                 using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\Database.mdf;Integrated Security=True"))
                 {
+                    int id;
                     connection.Open();
                     SqlCommand command = new SqlCommand("INSERT INTO dbo.ItemSet (Price, Make, Model, ReleaseDate, CountInStorage, CategoryId) VALUES (@price, @make, @model, @releaseDate, @countInStorage, @categoryId)", connection);
                     command.Parameters.Add("@price", SqlDbType.Float).Value = Math.Round((decimal)price, 2);
@@ -74,6 +92,22 @@ namespace PartShop
                     command.Parameters.Add("@countInStorage", SqlDbType.Int).Value = count;
                     command.Parameters.Add("@categoryId", SqlDbType.Int).Value = category;
                     command.ExecuteNonQuery();
+                    SqlCommand GetId = new SqlCommand("SELECT * FROM dbo.ItemSet WHERE (Price = @price AND Make = @make AND Model = @model AND ReleaseDate = @date AND CountInStorage = @countInStorage AND CategoryId = @categoryId)", connection);
+                    GetId.Parameters.Add("@price", SqlDbType.Float).Value = Math.Round((decimal)price, 2);
+                    GetId.Parameters.Add("@make", SqlDbType.NVarChar).Value = Make.Text;
+                    GetId.Parameters.Add("@model", SqlDbType.NVarChar).Value = Model.Text;
+                    GetId.Parameters.Add("@date", SqlDbType.DateTime).Value = date;
+                    GetId.Parameters.Add("@countInStorage", SqlDbType.Int).Value = count;
+                    GetId.Parameters.Add("@categoryId", SqlDbType.Int).Value = category;
+                    id = (int)GetId.ExecuteScalar();
+                    for (int i = 0; i < count; i++)
+                    {
+                        Random rng = new Random();
+                        SqlCommand UpdateStock = new SqlCommand("INSERT INTO dbo.ProductSet(Article, ItemId) VALUES(@article, @itemId)", connection);
+                        UpdateStock.Parameters.Add("@article", SqlDbType.Int).Value = rng.Next(1, 999999) + i;
+                        UpdateStock.Parameters.Add("@itemId", SqlDbType.Int).Value = id;
+                        UpdateStock.ExecuteNonQuery();
+                    }
                 }
                 Visible = false;
                 Price.Text = "Price";

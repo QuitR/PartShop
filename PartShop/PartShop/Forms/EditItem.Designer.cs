@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CountInStorage = new System.Windows.Forms.TextBox();
             this.Price = new System.Windows.Forms.TextBox();
             this.Make = new System.Windows.Forms.TextBox();
             this.Model = new System.Windows.Forms.TextBox();
@@ -37,15 +36,6 @@
             this.Id = new System.Windows.Forms.TextBox();
             this.Edit = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // CountInStorage
-            // 
-            this.CountInStorage.Location = new System.Drawing.Point(13, 147);
-            this.CountInStorage.Name = "CountInStorage";
-            this.CountInStorage.Size = new System.Drawing.Size(100, 20);
-            this.CountInStorage.TabIndex = 0;
-            this.CountInStorage.Text = "Count in storage";
-            this.CountInStorage.Click += new System.EventHandler(this.CountInStorage_Click);
             // 
             // Price
             // 
@@ -85,7 +75,7 @@
             // 
             // CategoryId
             // 
-            this.CategoryId.Location = new System.Drawing.Point(13, 173);
+            this.CategoryId.Location = new System.Drawing.Point(12, 147);
             this.CategoryId.Name = "CategoryId";
             this.CategoryId.Size = new System.Drawing.Size(100, 20);
             this.CategoryId.TabIndex = 5;
@@ -103,7 +93,7 @@
             // 
             // Edit
             // 
-            this.Edit.Location = new System.Drawing.Point(12, 210);
+            this.Edit.Location = new System.Drawing.Point(11, 182);
             this.Edit.Name = "Edit";
             this.Edit.Size = new System.Drawing.Size(101, 42);
             this.Edit.TabIndex = 7;
@@ -115,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(131, 266);
+            this.ClientSize = new System.Drawing.Size(131, 234);
             this.Controls.Add(this.Edit);
             this.Controls.Add(this.Id);
             this.Controls.Add(this.CategoryId);
@@ -123,7 +113,6 @@
             this.Controls.Add(this.Model);
             this.Controls.Add(this.Make);
             this.Controls.Add(this.Price);
-            this.Controls.Add(this.CountInStorage);
             this.Name = "EditItem";
             this.Text = "EditItem";
             this.ResumeLayout(false);
@@ -132,8 +121,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox CountInStorage;
         private System.Windows.Forms.TextBox Price;
         private System.Windows.Forms.TextBox Make;
         private System.Windows.Forms.TextBox Model;

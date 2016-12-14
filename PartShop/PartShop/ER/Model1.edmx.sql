@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/12/2016 20:42:07
--- Generated from EDMX file: C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\Model1.edmx
+-- Date Created: 12/13/2016 20:31:39
+-- Generated from EDMX file: C:\Users\Andrius\Documents\GitHub\VisualStudio\PartShop\PartShop\ER\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,14 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_UserItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ItemSet] DROP CONSTRAINT [FK_UserItem];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ItemCategory]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ItemSet] DROP CONSTRAINT [FK_ItemCategory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProductItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductSet] DROP CONSTRAINT [FK_ProductItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductSet] DROP CONSTRAINT [FK_UserProduct];
 GO
 
 -- --------------------------------------------------
@@ -36,6 +39,9 @@ IF OBJECT_ID(N'[dbo].[CategorySet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ItemSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ItemSet];
+GO
+IF OBJECT_ID(N'[dbo].[ProductSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProductSet];
 GO
 
 -- --------------------------------------------------
@@ -67,7 +73,14 @@ CREATE TABLE [dbo].[ItemSet] (
     [Model] nvarchar(max)  NOT NULL,
     [ReleaseDate] datetime  NULL,
     [CountInStorage] int  NULL,
-    [CategoryId] int  NOT NULL,
+    [CategoryId] int  NOT NULL
+);
+GO
+
+-- Creating table 'ProductSet'
+CREATE TABLE [dbo].[ProductSet] (
+    [Article] int  NOT NULL,
+    [ItemId] int  NOT NULL,
     [UserId] int  NULL
 );
 GO
@@ -94,6 +107,12 @@ ADD CONSTRAINT [PK_ItemSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Article] in table 'ProductSet'
+ALTER TABLE [dbo].[ProductSet]
+ADD CONSTRAINT [PK_ProductSet]
+    PRIMARY KEY CLUSTERED ([Article] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -104,7 +123,7 @@ ADD CONSTRAINT [FK_ItemCategory]
     FOREIGN KEY ([CategoryId])
     REFERENCES [dbo].[CategorySet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE CASCADE;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ItemCategory'
@@ -113,18 +132,33 @@ ON [dbo].[ItemSet]
     ([CategoryId]);
 GO
 
--- Creating foreign key on [UserId] in table 'ItemSet'
-ALTER TABLE [dbo].[ItemSet]
-ADD CONSTRAINT [FK_UserItem]
+-- Creating foreign key on [ItemId] in table 'ProductSet'
+ALTER TABLE [dbo].[ProductSet]
+ADD CONSTRAINT [FK_ProductItem]
+    FOREIGN KEY ([ItemId])
+    REFERENCES [dbo].[ItemSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE CASCADE;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductItem'
+CREATE INDEX [IX_FK_ProductItem]
+ON [dbo].[ProductSet]
+    ([ItemId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'ProductSet'
+ALTER TABLE [dbo].[ProductSet]
+ADD CONSTRAINT [FK_UserProduct]
     FOREIGN KEY ([UserId])
     REFERENCES [dbo].[UserSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE CASCADE;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_UserItem'
-CREATE INDEX [IX_FK_UserItem]
-ON [dbo].[ItemSet]
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserProduct'
+CREATE INDEX [IX_FK_UserProduct]
+ON [dbo].[ProductSet]
     ([UserId]);
 GO
 

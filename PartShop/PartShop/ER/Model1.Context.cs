@@ -28,5 +28,7 @@ namespace PartShop.ER
         public virtual DbSet<User> UserSet { get; set; }
         public virtual DbSet<Category> CategorySet { get; set; }
         public virtual DbSet<Item> ItemSet { get; set; }
+        public virtual DbSet<Product> ProductSet { get; set; }
+        public virtual DbSet<BoughtStuff> BoughtStuffSet { get; set; }
     }
 }

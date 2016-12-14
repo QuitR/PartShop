@@ -72,6 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ER\BoughtStuff.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ER\Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuyItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuyItem.Designer.cs">
+      <DependentUpon>BuyItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChooseCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChooseCategory.Designer.cs">
+      <DependentUpon>ChooseCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Categories.cs">
       <SubType>Form</SubType>
@@ -122,6 +140,12 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MostPopular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MostPopular.Designer.cs">
+      <DependentUpon>MostPopular.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +176,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Shopping cart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shopping cart.Designer.cs">
+      <DependentUpon>Shopping cart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Users.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +205,12 @@
     <EmbeddedResource Include="Forms\AdminInterface.resx">
       <DependentUpon>AdminInterface.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuyItem.resx">
+      <DependentUpon>BuyItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChooseCategory.resx">
+      <DependentUpon>ChooseCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Categories.resx">
       <DependentUpon>Categories.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,11 +226,20 @@
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MostPopular.resx">
+      <DependentUpon>MostPopular.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegisterLogin.resx">
       <DependentUpon>RegisterLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shopping cart.resx">
+      <DependentUpon>Shopping cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserInterface.resx">
+      <DependentUpon>UserInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
@@ -271,6 +316,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="ER\Model2.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

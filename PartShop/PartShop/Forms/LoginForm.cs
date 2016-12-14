@@ -21,7 +21,14 @@ namespace PartShop
             ai.Hide();
             UI.Hide();
             ai.FormClosed += SomeFormClosed;
+            UI.VisibleChanged += UI_VisibleChanged;
         }
+
+        private void UI_VisibleChanged(object sender, EventArgs e)
+        {
+            Show();
+        }
+
         private void SomeFormClosed(object sender, FormClosedEventArgs e)
         {
             Show();
@@ -55,11 +62,13 @@ namespace PartShop
                     else if ($"{dr["Username"]}" == Username.Text && $"{dr["Password"]}" == Password.Text && $"{dr["IsAdmin"]}" == "False")
                     {
                         Hide();
+                        int id;
+                        int.TryParse(($"{dr["Id"]}"), out id);
+                        UI.UserId = id;
                         UI.Show();
                     }
                     else
                         Login.Text = "Invalid data!";
-
                 }
             }
         }
